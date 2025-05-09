@@ -1,23 +1,106 @@
 version: '3'
 
 tasks:
-
-  shell:
-    desc: start venv shell
+  clean-modules:
+    desc: 🧹 Nettoie le cache des modules npm
     cmds:
-    - pipenv shell
+      - rm -rf node_modules
+      - rm -rf ~/.npm/_cacache
+      - echo "✅ Cache npm nettoyé!"
+
+  install:
+    desc: 📦 Installe les dépendances
+    deps: [clean-modules]
+    cmds:
+      - npm install --legacy-peer-deps
+      - echo "✅ Dépendances installées avec succès!"
+
+  dev:
+    desc: 🚀 Lance le serveur de développement
+    deps: [install]
+    cmds:
+      - npm run dev
 
   build:
-    desc: Build Docker image
+    desc: 🔨 Construit l'extension
+    deps: [install]
     cmds:
-    - docker compose build --push
+      - npm run build
 
-  run:
-    desc: Run the Docker container
+  test:
+    desc: 🧪 Lance les tests
+    deps: [install]
     cmds:
-    - docker compose up -d
+      - npm run test
 
-default:
-  desc: List available tasks
-  cmds:
-  - task --list
+  lint:
+    desc: 🔍 Vérifie le code avec ESLint
+    deps: [install]
+    cmds:
+      - npm run lint
+
+  format:
+    desc: ✨ Formate le code avec Prettier
+    deps: [install]
+    cmds:
+      - npm run format
+
+  docker-build:
+    desc: 🐳 Construit l'image Docker
+    deps: [build]
+    cmds:
+      - docker build -t modern-argocd-appset-extension:latest .
+
+  docker-dev:
+    desc: 🐳 Lance le serveur de développement dans Docker
+    cmds:
+      - docker-compose up dev
+
+  docker-run:
+    desc: 🐳 Lance l'extension dans Docker
+    deps: [build]
+    cmds:
+      - docker-compose up -d extension
+      - echo "✅ Extension disponible sur http://localhost:8080/extensions/modern-argocd-appset-extension"
+
+  deploy-local:
+    desc: 📦 Déploie l'extension dans un ArgoCD local
+    deps: [build]
+    cmds:
+      - echo "📦 Copie des fichiers vers le répertoire de l'extension ArgoCD..."
+      - mkdir -p ~/.argocd/extensions/modern-argocd-appset-extension
+      - cp -r dist/* ~/.argocd/extensions/modern-argocd-appset-extension/
+      - echo "✅ Extension déployée localement avec succès!"
+
+  deploy-k8s:
+    desc: 🚀 Déploie l'extension dans un cluster Kubernetes
+    deps: [build]
+    cmds:
+      - echo "🚀 Déploiement de l'extension dans le cluster Kubernetes..."
+      - chmod +x scripts/deploy.sh
+      - ./scripts/deploy.sh
+      - echo "✅ Extension déployée dans Kubernetes avec succès!"
+
+  clean:
+    desc: 🧹 Nettoie les fichiers générés
+    cmds:
+      - rm -rf dist
+      - rm -rf node_modules
+      - rm -rf coverage
+      - echo "🧹 Projet nettoyé avec succès!"
+
+  clean-docker:
+    desc: 🧹 Arrête et supprime les conteneurs Docker
+    cmds:
+      - docker-compose down
+      - echo "🧹 Conteneurs Docker arrêtés et supprimés!"
+
+  watch-logs:
+    desc: 📋 Surveille les logs des conteneurs
+    cmds:
+      - docker-compose logs -f
+
+  default:
+    desc: 📋 Liste les tâches disponibles
+    cmds:
+      - task --list

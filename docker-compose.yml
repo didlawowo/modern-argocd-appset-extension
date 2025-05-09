@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  extension:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./dist:/usr/share/nginx/html/extensions/modern-argocd-appset-extension
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+
+  # Service de développement (optionnel)
+  dev:
+    image: node:18-alpine
+    working_dir: /app
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=development

@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: modern-argocd-appset-extension
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/component: server
+data:
+  extension.js: |
+    ${CM_EXTENSION_JS}
+  extension.css: |
+    ${CM_EXTENSION_CSS}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: modern-argocd-appset-extension-deployment
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/component: server
+    argocd.argoproj.io/secret-type: extension-bundle
+stringData:
+  # Cette référence indique où les fichiers d'extension sont stockés
+  uri: cm://argocd/modern-argocd-appset-extension

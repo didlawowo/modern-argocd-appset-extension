@@ -1,0 +1,229 @@
+.application-set-extension {
+  padding: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.application-set-extension__header {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.application-set-extension__title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #384046;
+  margin: 0;
+}
+
+.application-set-extension__error {
+  color: #f44336;
+  padding: 0.5rem;
+  border: 1px solid #f44336;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.application-set-extension__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  background-color: #f5f7fa;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.application-set-extension__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+}
+
+.application-set-extension__stat-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #6d7989;
+}
+
+.application-set-extension__stat-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #384046;
+}
+
+.application-set-extension__stat-value--healthy {
+  color: #18BE94;
+}
+
+.application-set-extension__stat-value--progressing {
+  color: #3B73D0;
+}
+
+.application-set-extension__stat-value--degraded {
+  color: #E96D76;
+}
+
+.application-set-extension__stat-value--suspended {
+  color: #9381FF;
+}
+
+.application-set-extension__stat-value--unknown {
+  color: #8D9BAE;
+}
+
+.application-set-extension__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.application-set-extension__filter {
+  padding: 0.25rem 0.75rem;
+  background-color: #f5f7fa;
+  border: 1px solid #dde4ec;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.application-set-extension__filter:hover {
+  background-color: #eef1f5;
+}
+
+.application-set-extension__filter--active {
+  background-color: #3B73D0;
+  color: white;
+  border-color: #3B73D0;
+}
+
+.application-set-extension__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.application-set-extension__table th,
+.application-set-extension__table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #dde4ec;
+}
+
+.application-set-extension__table th {
+  font-weight: 500;
+  color: #6d7989;
+  font-size: 0.85rem;
+}
+
+.application-set-extension__table a {
+  color: #3B73D0;
+  text-decoration: none;
+}
+
+.application-set-extension__table a:hover {
+  text-decoration: underline;
+}
+
+.application-set-extension__health {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.application-set-extension__health--healthy {
+  background-color: rgba(24, 190, 148, 0.1);
+  color: #18BE94;
+}
+
+.application-set-extension__health--progressing {
+  background-color: rgba(59, 115, 208, 0.1);
+  color: #3B73D0;
+}
+
+.application-set-extension__health--degraded {
+  background-color: rgba(233, 109, 118, 0.1);
+  color: #E96D76;
+}
+
+.application-set-extension__health--suspended {
+  background-color: rgba(147, 129, 255, 0.1);
+  color: #9381FF;
+}
+
+.application-set-extension__health--unknown {
+  background-color: rgba(141, 155, 174, 0.1);
+  color: #8D9BAE;
+}
+
+.application-set-extension__sync {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.application-set-extension__sync--synced {
+  background-color: rgba(24, 190, 148, 0.1);
+  color: #18BE94;
+}
+
+.application-set-extension__sync--out-of-sync {
+  background-color: rgba(233, 109, 118, 0.1);
+  color: #E96D76;
+}
+
+.application-set-extension__sync--unknown {
+  background-color: rgba(141, 155, 174, 0.1);
+  color: #8D9BAE;
+}
+
+.application-set-extension__actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.application-set-extension__action-button {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #dde4ec;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.application-set-extension__action-button:hover {
+  background-color: #f5f7fa;
+}
+
+.application-set-extension__action-button--primary {
+  background-color: #3B73D0;
+  color: white;
+  border-color: #3B73D0;
+}
+
+.application-set-extension__action-button--primary:hover {
+  background-color: #2962b9;
+}
+
+.application-set-extension__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: #6d7989;
+}
+
+.application-set-extension__empty {
+  padding: 2rem;
+  text-align: center;
+  color: #6d7989;
+}
